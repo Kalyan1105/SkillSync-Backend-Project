@@ -1,0 +1,42 @@
+spring:
+  application:
+    name: api-gateway   # MUST match github file name
+
+  config:
+    import: "optional:configserver:${CONFIG_SERVER_URL:http://localhost:8888}"
+
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: swagger-user
+              uri: http://localhost:8081
+              predicates:
+                - Path=/v3/api-docs/user
+              filters:
+                - RewritePath=/v3/api-docs/user, /v3/api-docs
+            - id: swagger-session
+              uri: http://localhost:8082
+              predicates:
+                - Path=/v3/api-docs/session
+              filters:
+                - RewritePath=/v3/api-docs/session, /v3/api-docs
+            - id: swagger-learning
+              uri: http://localhost:8083
+              predicates:
+                - Path=/v3/api-docs/learning
+              filters:
+                - RewritePath=/v3/api-docs/learning, /v3/api-docs
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    urls:
+      - name: User Service
+        url: /v3/api-docs/user
+      - name: Session Service
+        url: /v3/api-docs/session
+      - name: Learning Service
+        url: /v3/api-docs/learning
