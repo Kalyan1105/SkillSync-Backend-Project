@@ -30,6 +30,9 @@ class AuthServiceTest {
     @Mock
     private PasswordEncoder passwordEncoder;
 
+    @Mock
+    private com.example.user_service.service.EmailService emailService;
+
     @Spy
     private org.modelmapper.ModelMapper modelMapper = new org.modelmapper.ModelMapper();
 
@@ -66,6 +69,7 @@ class AuthServiceTest {
                 .email("k@gmail.com")
                 .password("encoded")
                 .role("ROLE_LEARNER")
+                .isEnabled(true)
                 .build();
 
         when(userRepository.findByEmail("k@gmail.com")).thenReturn(Optional.of(user));
@@ -87,6 +91,7 @@ class AuthServiceTest {
         User user = User.builder()
                 .email("k@gmail.com")
                 .password("encoded")
+                .isEnabled(true)
                 .build();
 
         when(userRepository.findByEmail("k@gmail.com")).thenReturn(Optional.of(user));

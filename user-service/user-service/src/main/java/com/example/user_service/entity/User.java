@@ -3,6 +3,8 @@ package com.example.user_service.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "users")
 @Getter
@@ -32,4 +34,11 @@ public class User {
     private Boolean isMentorApproved;
 
     private String availability;
+
+    private String otp;
+
+    private LocalDateTime otpExpiry;
+
+    @Builder.Default
+    private boolean isEnabled = false;
 }

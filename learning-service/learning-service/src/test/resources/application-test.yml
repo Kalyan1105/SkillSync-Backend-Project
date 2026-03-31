@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: LEARNING-SERVICE
+  datasource:
+    url: jdbc:h2:mem:learning_db;DB_CLOSE_DELAY=-1;MODE=MySQL
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: 
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+  config:
+    import: "optional:configserver:http://localhost:8888"
+  cloud:
+    config:
+      enabled: false
+    discovery:
+      enabled: false
+
+jwt:
+  secret: test-secret-key-12345678901234567890123456789012

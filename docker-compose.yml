@@ -10,10 +10,11 @@ services:
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      test: ["CMD", "mysqladmin", "ping", "-uroot", "-p2005@Kalyansai"]
       interval: 10s
       timeout: 5s
-      retries: 5
+      retries: 10
+      start_period: 30s
 
   zipkin:
     image: openzipkin/zipkin:latest
