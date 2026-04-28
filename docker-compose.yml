@@ -24,7 +24,7 @@ services:
 
   config-server:
     build:
-      context: ./config-server/config-server
+      context: ./config-server
     container_name: config-server
     ports:
       - "8888:8888"
@@ -41,7 +41,7 @@ services:
 
   eureka-server:
     build:
-      context: ./eureka-server/eureka-server
+      context: ./eureka-server
     container_name: eureka-server
     ports:
       - "8761:8761"
@@ -53,10 +53,10 @@ services:
 
   api-gateway:
     build:
-      context: ./api-gateway/api-gateway
+      context: ./api-gateway
     container_name: api-gateway
     ports:
-      - "8080:8080"
+      - "8084:8080"
     environment:
       - CONFIG_SERVER_URL=http://config-server:8888
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
@@ -72,7 +72,7 @@ services:
 
   user-service:
     build:
-      context: ./user-service/user-service
+      context: ./user-service
     container_name: user-service
     ports:
       - "8081:8081"
@@ -94,7 +94,7 @@ services:
 
   session-service:
     build:
-      context: ./session-service/session-service
+      context: ./session-service
     container_name: session-service
     ports:
       - "8082:8082"
@@ -116,7 +116,7 @@ services:
 
   learning-service:
     build:
-      context: ./learning-service/learning-service
+      context: ./learning-service
     container_name: learning-service
     ports:
       - "8083:8083"
